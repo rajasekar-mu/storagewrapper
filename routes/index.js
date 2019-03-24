@@ -17,7 +17,7 @@ router.get('/get-mock-data', async (req, res, next) => {
   	let a = await storage.get('a');
     let b = await storage.get('b');
     if(a && b){
-      var res_data = {status:200,data:{a:a,b:b},message:'Stored successfully'}
+      var res_data = {status:200,data:{a:a,b:b},message:'Retrieve successfully'}
     }else{
       var res_data = {status:400,message:'No data available'}
     }
@@ -32,8 +32,19 @@ router.get('/delete-mock-data', async (req, res, next) => {
 });
 
 router.get('/add-bulk-mock-data', async (req, res, next) => {
-    await storage.batchPut([{a:51},{b:71}]);
+    await storage.batchPut([{x:51},{y:71}]);
     res.json({status:200,message:'Stored successfully'});
+});
+
+router.get('/get-batch-mock-data', async (req, res, next) => {
+  	let a = await storage.get('x');
+    let b = await storage.get('y');
+    if(a && b){
+      var res_data = {status:200,data:{a:a,b:b},message:'Retrieve successfully'}
+    }else{
+      var res_data = {status:400,message:'No data available'}
+    }
+    res.json(res_data);
 });
 
 
